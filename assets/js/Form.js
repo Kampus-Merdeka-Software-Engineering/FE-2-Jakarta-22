@@ -1,21 +1,21 @@
-//const inputs = document.querySelectorAll(".input");
+const inputs = document.querySelectorAll(".input");
 
-//function addcl(){
-	//let parent = this.parentNode.parentNode;
-//	parent.classList.add("focus");
-//}
+function addcl(){
+	let parent = this.parentNode.parentNode;
+	parent.classList.add("focus");
+}
 
-//function remcl(){
-	//let parent = this.parentNode.parentNode;
-	//if(this.value == ""){
-	//	parent.classList.remove("focus");
-	//}
-//}
+function remcl(){
+	let parent = this.parentNode.parentNode;
+	if(this.value == ""){
+		parent.classList.remove("focus");
+	}
+}
 
-//inputs.forEach(input => {
-	//input.addEventListener("focus", addcl);
-	//input.addEventListener("blur", remcl);
-//});
+inputs.forEach(input => {
+	input.addEventListener("focus", addcl);
+	input.addEventListener("blur", remcl);
+});
 function Logbtn() {
 	// Menampilkan alert
 	alert(' Success Login');
@@ -25,9 +25,9 @@ function Logbtn() {
 
 function Btnregis() {
 	//Menampilkan alert
-	alert (' Success Login');
+	alert ('Success Login');
 	// Mengarahkan ke halaman berikutnya (ganti 'halaman-berikutnya.html' dengan URL yang diinginkan)
-	window.location.href = './page/login.html';
+	window.location.href = '../page/login.html';
 }
 
 document.getElementById('myForm').addEventListener('submit', function(event) {

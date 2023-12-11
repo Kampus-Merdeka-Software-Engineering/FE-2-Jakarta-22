@@ -170,7 +170,7 @@
             message: document.getElementById('message').value,
             
           };
-          fetch('http://localhost:5000/feedback', {
+          fetch('http://localhost:5000/feedbacks', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -188,7 +188,7 @@
           });
         });
 
-        fetch(`http://localhost:5000/feedback/${id}`, {
+        fetch('http://localhost:5000/feedbacks/${id}', {
           method: 'DELETE',
         })
             .then(response => response.json())

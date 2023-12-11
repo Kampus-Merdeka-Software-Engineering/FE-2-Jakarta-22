@@ -1,5 +1,5 @@
 
-fetch("http://localhost:5000/menu", {
+fetch("http://localhost:5000/menus", {
   header: {
     "Content-Type": "application/json",
   },

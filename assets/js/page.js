@@ -108,25 +108,63 @@ function hapus() {
 // }
 
 // search Menu
-document.addEventListener('DOMContentLoaded', function () {
- const searchInput = document.getElementById('searchInput');
- const menuItems = document.querySelectorAll('.menu-item');
-
- searchInput.addEventListener('input', function () {
-     const searchTerm = searchInput.value.toLowerCase().replace('@', '');
-
-     menuItems.forEach(function (menuItem) {
-         const menuItemText = menuItem.textContent.toLowerCase();
-         const isMatch = menuItemText.includes(searchTerm);
-
-         if (isMatch) {
-             menuItem.style.display = 'block';
-         } else {
-             menuItem.style.display = 'none';
-         }
-     });
- });
-});
+function fetchMenuItems() {
+  // Kode untuk mengambil data dari server (dianggap sudah diperoleh dalam variabel 'data')
+  const data = [
+       { name: 'Item 1' },
+       { name: 'Item 2' },
+       { name: 'Item 3' },
+  ];
+ 
+  // Buat container untuk menampung elemen-elemen 'menu-item'
+  const menuItemsContainer = document.getElementById('menuItemsContainer');
+ 
+  // Kosongkan container sebelum menambahkan elemen-elemen baru
+  menuItemsContainer.innerHTML = '';
+ 
+  // Tambahkan logika untuk mengubah data 'data' menjadi elemen HTML yang telah ditambahkan ke 'menuItems'
+  data.forEach(item => {
+       // Buat elemen 'div' baru
+       const menuItem = document.createElement('div');
+ 
+       // Tambahkan class 'menu-item' ke elemen 'div'
+       menuItem.classList.add('menu-item');
+ 
+       // Buat teks baru dan tambahkan teks dari objek 'item'
+       const menuItemText = document.createTextNode(item.name);
+ 
+       // Tambahkan teks ke elemen 'div'
+       menuItem.appendChild(menuItemText);
+ 
+       // Tambahkan elemen 'div' ke dalam container
+       menuItemsContainer.appendChild(menuItem);
+  });
+ 
+  // Mengatur filter pencarian
+  document.addEventListener('DOMContentLoaded', function () {
+       const searchInput = document.getElementById('searchInput');
+       const menuItems = document.querySelectorAll('.menu-item');
+ 
+       searchInput.addEventListener('input', function () {
+           const searchTerm = searchInput.value.toLowerCase();
+  
+           menuItems.forEach(function (menuItem) {
+               const menuItemText = menuItem.textContent.toLowerCase();
+               const isMatch = menuItemText.includes(searchTerm);
+  
+               if (isMatch) {
+                  menuItem.style.display = 'block';
+               } else {
+                  menuItem.style.display = 'none';
+               }
+           });
+       });
+  });
+ }
+ 
+ // Memanggil fungsi fetchMenuItems
+ fetchMenuItems();
+ 
 
 
 /*feedback Javascript*/

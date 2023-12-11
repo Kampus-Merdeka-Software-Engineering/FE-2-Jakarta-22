@@ -343,6 +343,9 @@ a{
 
 #description p {
     margin-bottom: 15px; /* Tambahkan margin-bottom untuk memberikan jarak di bawah setiap paragraf */
+    font-size: 25px;
+    text-align: justify;
+    margin-right: 20px;
 }
 
 #socmed_btn {
@@ -816,17 +819,12 @@ footer{
     float: right;
     margin-left: 8rem;
 }
-.anchorbtm{
+.anchorbtm .anchorbox{
     font-weight: bolder;
     letter-spacing: 0px;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
-.anchorbox{
-    font-weight: bolder;
-    letter-spacing: 0px;
-    margin-bottom: 1rem;
-}
 #footSocmed {
     right: 5%;
     position: absolute;
@@ -840,8 +838,8 @@ footer{
 #Icongh{
     height: auto; 
     width: auto; 
-    max-width: 32px; 
-    max-height: 32px;
+    max-width: 28px; 
+    max-height: 28px;
 }
 #Iconml{
     height: auto; 
@@ -853,8 +851,8 @@ footer{
 #IconTw{
     height: auto; 
     width: auto; 
-    max-width: 28px; 
-    max-height: 28px;
+    max-width: 26px; 
+    max-height: 26px;
     padding-top: 3px;
 }
 
@@ -1369,9 +1367,9 @@ footer{
   display: flex;
   margin: 5px;
   background-color: #09412F;
-  transition: transform .2s;
+  transition: transform .1s;
   flex-direction: row;
-    align-items: center;
+align-items: center;
     justify-content: space-around;
 }
 
@@ -1715,7 +1713,7 @@ text-align: justify;
 .basicnews:hover{
     background-color: grey;
     color: #09412F;
-    transition: 0.4s;
+    transition: 0.2s;
 }
 
 /* Slideshow container */

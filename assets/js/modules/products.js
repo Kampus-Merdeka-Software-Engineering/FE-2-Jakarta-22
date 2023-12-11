@@ -25,4 +25,3 @@ fetch("http://localhost:5000/menus", {
   console.log(err);
 })
 setProductsData();
-

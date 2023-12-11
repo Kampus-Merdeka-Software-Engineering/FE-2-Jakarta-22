@@ -139,9 +139,9 @@
                     <input type="text" id="message2" name="message" required>
                     <label for="options" id="category">Category :</label>
                     <select id="options" name="options">
-                        <option value="option1">BSI</option>
-                        <option value="option2">BRI</option>
-                        <option value="option3">BNI</option>
+                        <option value="BSI">BSI</option>
+                        <option value="BRI">BRI</option>
+                        <option value="BNI">BNI</option>
                     </select>
                     <br>
                     <button type="submit" class="basicnews" onclick="printDona()">Submit</button>
@@ -152,11 +152,11 @@
                         var name = document.getElementById("name").value;
                         var total_price = document.getElementById("total_price").value;
                         var options = document.getElementById("options").value;
-
+                        var message = document.getElementById("message2").value;
                         if (name == "" || total_price == "" || options == "") {
                             alert("Please make sure to fill in all the required fields.");
                         } else {
-                            alert("Successfully saved your donation details!");
+                            alert("Dear " + name + ", your donation of " + total_price +"!");
                         }
                     }
                     document.getElementById('formNews').addEventListener('submit', function(event) {
@@ -164,11 +164,11 @@
                         const formData = {
                             name: document.getElementById('name').value,
                             amount: document.getElementById('total_price').value,
-                            category: document.getElementById('category').value,
+                            category: document.getElementById('options').value,
                             message: document.getElementById('message').value,
                             
                         };
-                        fetch('http://localhost:5000/feedback', {
+                        fetch('http://localhost:5000/donations', {
                             method: 'POST',
                             headers: {
                             'Content-Type': 'application/json',
@@ -186,7 +186,7 @@
                         });
                         });
 
-                        fetch(`http://localhost:5000/feedback/${id}`, {
+                        fetch(`http://localhost:5000/donations/${id}`, {
                         method: 'DELETE',
                         })
                             .then(response => response.json())
@@ -198,7 +198,7 @@
                             console.error('Error deleting feedback:', error);
                             // Handle error, e.g., show an error message to the user
                             });     
-    </script>
+                </script>
         </div>
     </div>
 

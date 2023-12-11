@@ -33,7 +33,7 @@ function addChart(name, price) {
   const cartItem = document.createElement('tr');
 
   // Calculate tax and total price after tax
-  const taxRate = 0.1;
+  const taxRate = 0.10;
   const tax = price * taxRate;
   const totalPriceAfterTax = price + tax;
 
@@ -41,15 +41,13 @@ function addChart(name, price) {
   cartItem.innerHTML = `
     <td>${name}</td>
     <td>$${price.toFixed(2)}</td>
-    <td>$${tax.toFixed(2)}</td>
-    <td>$${totalPriceAfterTax.toFixed(2)}</td>
     <td><button <i class="fa-solid fa-xmark"onclick="removeChart(this)"></i></button></td>
   `;
 
   // Add cart item to the cart body
   cartBody.appendChild(cartItem);
 
-  // Calculate total price, total price after tax, and total price after discount
+  // Calculate total price, total price after tax
   const currentTotalPriceAfterTax = parseFloat(totalPriceAfterTaxElement.textContent) || 0;
 
   // Update total price, total price after tax, and total price after discount
@@ -58,23 +56,23 @@ function addChart(name, price) {
 
 
 function removeChart(btn) {
-  const cartItem = btn.parentElement.parentElement;
-  const cartBody = document.getElementById('cartBody');
-  const totalPriceAfterTaxElement = document.getElementById('totalPriceAfterTax');
- 
-  // Calculate tax and total price after tax
-  const taxRate = 0.1;
-  const price = parseFloat(cartItem.children[1].textContent);
-  const tax = price * taxRate;
-  const totalPriceAfterTax = price + tax;
- 
-  // Update total price, total price after tax, and total price after discount
-  let currentTotalPriceAfterTax = parseFloat(totalPriceAfterTaxElement.textContent) || 0;
-  totalPriceAfterTaxElement.textContent = (currentTotalPriceAfterTax - totalPriceAfterTax).toFixed(2);
- 
-  // Remove cart item from the cart body
-  cartBody.removeChild(cartItem);
- }
+ const cartItem = btn.parentElement.parentElement;
+ const cartBody = document.getElementById('cartBody');
+ const totalPriceAfterTaxElement = document.getElementById('totalPriceAfterTax');
+
+ // Remove item from cart body
+ cartBody.removeChild(cartItem);
+
+ // Calculate total price after tax
+ const price = parseFloat(cartItem.children[1].textContent.substring(1));
+ const taxRate = 0.10;
+ const tax = price * taxRate;
+ const totalPriceAfterTax = price + tax;
+
+ // Update total price after tax
+ const currentTotalPriceAfterTax = parseFloat(totalPriceAfterTaxElement.textContent);
+ totalPriceAfterTaxElement.textContent = (currentTotalPriceAfterTax - totalPriceAfterTax).toFixed(2);
+}
 
 
 function hapus() {
@@ -108,62 +106,26 @@ function hapus() {
 // }
 
 // search Menu
-function fetchMenuItems() {
-  // Kode untuk mengambil data dari server (dianggap sudah diperoleh dalam variabel 'data')
-  const data = [
-       { name: 'Item 1' },
-       { name: 'Item 2' },
-       { name: 'Item 3' },
-  ];
- 
-  // Buat container untuk menampung elemen-elemen 'menu-item'
-  const menuItemsContainer = document.getElementById('menuItemsContainer');
- 
-  // Kosongkan container sebelum menambahkan elemen-elemen baru
-  menuItemsContainer.innerHTML = '';
- 
-  // Tambahkan logika untuk mengubah data 'data' menjadi elemen HTML yang telah ditambahkan ke 'menuItems'
-  data.forEach(item => {
-       // Buat elemen 'div' baru
-       const menuItem = document.createElement('div');
- 
-       // Tambahkan class 'menu-item' ke elemen 'div'
-       menuItem.classList.add('menu-item');
- 
-       // Buat teks baru dan tambahkan teks dari objek 'item'
-       const menuItemText = document.createTextNode(item.name);
- 
-       // Tambahkan teks ke elemen 'div'
-       menuItem.appendChild(menuItemText);
- 
-       // Tambahkan elemen 'div' ke dalam container
-       menuItemsContainer.appendChild(menuItem);
+function searchProduct(input) {
+  const filter = input.value.toUpperCase();
+  const menuItems = document.querySelectorAll('.menu-item');
+
+  menuItems.forEach(function (menuItem) {
+      const menuItemText = menuItem.getElementsByClassName('productName')[0].textContent;
+      if (menuItemText.toUpperCase().indexOf(filter) > -1) {
+          menuItem.style.display = "";
+      } else {
+          menuItem.style.display = "none";
+      }
   });
- 
-  // Mengatur filter pencarian
-  document.addEventListener('DOMContentLoaded', function () {
-       const searchInput = document.getElementById('searchInput');
-       const menuItems = document.querySelectorAll('.menu-item');
- 
-       searchInput.addEventListener('input', function () {
-           const searchTerm = searchInput.value.toLowerCase();
-  
-           menuItems.forEach(function (menuItem) {
-               const menuItemText = menuItem.textContent.toLowerCase();
-               const isMatch = menuItemText.includes(searchTerm);
-  
-               if (isMatch) {
-                  menuItem.style.display = 'block';
-               } else {
-                  menuItem.style.display = 'none';
-               }
-           });
-       });
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  const searchInput = document.getElementById('searchInput');
+  searchInput.addEventListener('input', function () {
+      searchProduct(this);
   });
- }
- 
- // Memanggil fungsi fetchMenuItems
- fetchMenuItems();
+});
  
 
 

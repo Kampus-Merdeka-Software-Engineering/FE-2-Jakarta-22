@@ -88,23 +88,6 @@ function hapus() {
   }
 }
 
-//  //checkout form
-//  function ambilDataCart() {
-//   const cartBody = document.getElementById('cartBody');
-//   const cartItems = cartBody.getElementsByTagName('tr');
-//   const dataCart = [];
- 
-//   for (let i = 0; i < cartItems.length; i++) {
-//      const cartItem = cartItems[i];
-//      const name = cartItem.getElementsByTagName('td')[0].textContent;
-//      const price = parseFloat(cartItem.getElementsByTagName('td')[1].textContent.replace('$', ''));
- 
-//      dataCart.push({ name, price });
-//   }
- 
-//   return dataCart;
-// }
-
 // search Menu
 function searchProduct(input) {
   const filter = input.value.toUpperCase();
@@ -127,38 +110,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
  
-
-
-/*feedback Javascript*/
-/*feedback Javascript*/
-// document.getElementById('feedbackForm').addEventListener('submit', function(event) {
-//   event.preventDefault();
-
-//   const formData = {
-//     username: document.getElementById('username').value,
-//     email: document.getElementById('email').value,
-//     message: document.getElementById('message').value,
-//     category: document.getElementById('category').value,
-//   };
-
-//   fetch('/feedbacks', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(formData),
-//   })
-//   .then(response => response.json())
-//   .then(data => {
-//     console.log('Feedback submitted successfully:', data);
-//     // Handle success, e.g., show a success message to the user
-//   })
-//   .catch(error => {
-//     console.error('Error submitting feedback:', error);
-//     // Handle error, e.g., show an error message to the user
-//   });
-// });
-
+//Feedback Js
 function validateForm() {
 
     var fname =  document.forms["myForm"]["fname"];
@@ -178,7 +130,6 @@ function validateForm() {
     else{
       alert('Please use alphabet characters only for name');
       fname.focus();
-      lname.focus();
       return false;
     }
   }
@@ -205,10 +156,41 @@ function validateForm() {
       var letters = /^[A-Za-z]+$/;
       var mailformat = /^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)$/;
   
-      if (fname.value.match(letters) && lname.value.match(letters) && email.value.match(mailformat)
+      if (fname.value.match(letters) && email.value.match(mailformat)
           && myForm.checkbox.checked == true && message.value!="") {
         alert("Success! Thank you ");
         return true;
       }
 }
-//News JS
+
+//News Donation
+async function printDona() {
+  var name = document.getElementById("name").value;
+  var total_price = document.getElementById("total_price").value;
+  var options = document.getElementById("options").value;
+  var message = document.getElementById("message2").value;
+  if (name == "" || total_price == "" || options == "") {
+      alert("Please make sure to fill in all the required fields.");
+  } else {
+      alert("Dear " + name + ", your donation of " + total_price +"!");
+      await fetch('http://localhost:5000/donations', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ name, total_price, options, message })
+      });
+      await fetch('http://localhost:5000/donations/${id}', {
+          method: 'DELETE',
+          }).
+          then(response => response.json())
+              .then(data => {
+              console.log('Feedback deleted successfully:', data);
+              // Handle success, e.g., show a success message to the user
+              })
+              .catch(error => {
+              console.error('Error deleting feedback:', error);
+              // Handle error, e.g., show an error message to the user
+      });
+  }
+}

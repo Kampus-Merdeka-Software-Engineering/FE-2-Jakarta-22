@@ -62,32 +62,7 @@
             </div>
         </div>
     </div>
-    <script>
-    var slideIndex = 1;
-    showSlides(slideIndex);
 
-    // Next/previous controls
-    function plusSlides(n) {
-    showSlides(slideIndex += n);
-    }
-
-    function showSlides(n) {
-    var i;
-    var slides = document.getElementsByClassName("mySlides");
-    var dots = document.getElementsByClassName("dot");
-    if (n > slides.length) {slideIndex = 1}
-    if (n < 1) {slideIndex = slides.length}
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-    }
-    for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
-    }
-    slides[slideIndex-1].style.display = "block";
-    dots[slideIndex-1].className += " active";
-    }
-
-    </script>
 
 <!-- News -->
 <div class="alert">
@@ -148,56 +123,60 @@
                 </form>
             </div>
                 <script>
-                    function printDona() {
-                        var name = document.getElementById("name").value;
-                        var total_price = document.getElementById("total_price").value;
-                        var options = document.getElementById("options").value;
-                        var message = document.getElementById("message2").value;
-                        if (name == "" || total_price == "" || options == "") {
-                            alert("Please make sure to fill in all the required fields.");
-                        } else {
-                            alert("Dear " + name + ", your donation of " + total_price +"!");
-                        }
-                    }
-                    document.getElementById('formNews').addEventListener('submit', function(event) {
-                        event.preventDefault();
-                        const formData = {
-                            name: document.getElementById('name').value,
-                            amount: document.getElementById('total_price').value,
-                            category: document.getElementById('options').value,
-                            message: document.getElementById('message').value,
-                            
-                        };
-                        fetch('http://localhost:5000/donations', {
-                            method: 'POST',
-                            headers: {
-                            'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify(formData),
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            console.log('Feedback submitted successfully:', data);
-                            // Handle success, e.g., show a success message to the user
-                        })
-                        .catch(error => {
-                            console.error('Error submitting feedback:', error);
-                            // Handle error, e.g., show an error message to the user
-                        });
-                        });
+                    var slideIndex = 1;
+                    showSlides(slideIndex);
 
-                        fetch(`http://localhost:5000/donations/${id}`, {
-                        method: 'DELETE',
-                        })
-                            .then(response => response.json())
-                            .then(data => {
-                            console.log('Feedback deleted successfully:', data);
-                            // Handle success, e.g., show a success message to the user
-                            })
-                            .catch(error => {
-                            console.error('Error deleting feedback:', error);
-                            // Handle error, e.g., show an error message to the user
-                            });     
+                    // Next/previous controls
+                    function plusSlides(n) {
+                    showSlides(slideIndex += n);
+                    }
+
+                    function showSlides(n) {
+                    var i;
+                    var slides = document.getElementsByClassName("mySlides");
+                    var dots = document.getElementsByClassName("dot");
+                    if (n > slides.length) {slideIndex = 1}
+                    if (n < 1) {slideIndex = slides.length}
+                    for (i = 0; i < slides.length; i++) {
+                        slides[i].style.display = "none";
+                    }
+                    for (i = 0; i < dots.length; i++) {
+                        dots[i].className = dots[i].className.replace(" active", "");
+                    }
+                    slides[slideIndex-1].style.display = "block";
+                    dots[slideIndex-1].className += " active";
+                    }
+    
+                    // async function printDona() {
+                    //     var name = document.getElementById("name").value;
+                    //     var total_price = document.getElementById("total_price").value;
+                    //     var options = document.getElementById("options").value;
+                    //     var message = document.getElementById("message2").value;
+                    //     if (name == "" || total_price == "" || options == "") {
+                    //         alert("Please make sure to fill in all the required fields.");
+                    //     } else {
+                    //         alert("Dear " + name + ", your donation of " + total_price +"!");
+                    //         await fetch('http://localhost:5000/donations', {
+                    //             method: 'POST',
+                    //             headers: {
+                    //                 'Content-Type': 'application/json'
+                    //             },
+                    //             body: JSON.stringify({ name, total_price, options, message })
+                    //         });
+                    //         await fetch('http://localhost:5000/donations/${id}', {
+                    //             method: 'DELETE',
+                    //             }).
+                    //             then(response => response.json())
+                    //                 .then(data => {
+                    //                 console.log('Feedback deleted successfully:', data);
+                    //                 // Handle success, e.g., show a success message to the user
+                    //                 })
+                    //                 .catch(error => {
+                    //                 console.error('Error deleting feedback:', error);
+                    //                 // Handle error, e.g., show an error message to the user
+                    //         });
+                    //     }
+                    // }
                 </script>
         </div>
     </div>

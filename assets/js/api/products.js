@@ -2,7 +2,7 @@ import apiRoutes from "../constants/apiRoutes.js";
 
 export const loadProducts = async function getData() {
   try {
-     const response = await fetch('http://localhost:5000/menu', {
+     const response = await fetch('http://localhost:5000/menus', {
        method: 'GET',
        headers: {
          'Content-Type': 'application/json',

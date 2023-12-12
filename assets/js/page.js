@@ -172,7 +172,7 @@ async function printDona() {
   if (name == "" || total_price == "" || options == "") {
       alert("Please make sure to fill in all the required fields.");
   } else {
-      alert("Dear " + name + ", your donation of " + total_price +"!");
+      alert("Dear " + name + ", your donation of " + amount +"!");
       await fetch('http://localhost:5000/donations', {
           method: 'POST',
           headers: {

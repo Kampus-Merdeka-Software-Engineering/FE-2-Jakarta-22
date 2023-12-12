@@ -166,8 +166,8 @@ function validateForm() {
 //News Donation
 async function printDona() {
   var name = document.getElementById("name").value;
-  var total_price = document.getElementById("total_price").value;
-  var options = document.getElementById("options").value;
+  var amount = document.getElementById("total_price").value;
+  var category = document.getElementById("category").value;
   var message = document.getElementById("message2").value;
   if (name == "" || total_price == "" || options == "") {
       alert("Please make sure to fill in all the required fields.");
@@ -178,7 +178,7 @@ async function printDona() {
           headers: {
               'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ name, total_price, options, message })
+          body: JSON.stringify({ name, amount,category, message })
       });
       await fetch('http://localhost:5000/donations/${id}', {
           method: 'DELETE',
